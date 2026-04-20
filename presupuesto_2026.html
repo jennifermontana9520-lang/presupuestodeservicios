@@ -117,6 +117,25 @@
   .cost-row.total-row .lbl { color:var(--navy);font-weight:600; }
   .cost-row.total-row .val { color:var(--blue); }
 
+  /* FILTER BAR */
+  .filter-bar { display:flex;align-items:center;gap:12px;background:var(--bg-card);border:2px solid var(--blue);border-radius:12px;padding:18px 24px;margin-bottom:24px;box-shadow:0 4px 16px rgba(27,82,153,0.10);flex-wrap:wrap; }
+  .filter-label { font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-right:6px;white-space:nowrap; }
+  .filter-btn { display:flex;align-items:center;gap:8px;background:none;border:1.5px solid var(--border);border-radius:8px;padding:10px 22px;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:500;color:var(--text-sub);cursor:pointer;transition:all .18s;white-space:nowrap; }
+  .filter-btn:hover { border-color:var(--blue);color:var(--blue);background:rgba(27,82,153,0.04); }
+  .filter-btn.active { background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600; }
+  .filter-btn .dot { width:9px;height:9px;border-radius:50%;flex-shrink:0; }
+  .filter-btn.active   .dot-all  { background:#fff; }
+  .filter-btn.active   .dot-asoc { background:var(--sky); }
+  .filter-btn.active   .dot-pos  { background:var(--accent-lt); }
+  .filter-btn.active   .dot-ext  { background:#F28B5A; }
+  .filter-btn:not(.active) .dot-all  { background:var(--grey-lt); }
+  .filter-btn:not(.active) .dot-asoc { background:var(--blue); }
+  .filter-btn:not(.active) .dot-pos  { background:var(--accent); }
+  .filter-btn:not(.active) .dot-ext  { background:#C4541A; }
+  .filter-result-info { margin-left:auto;font-size:12px;color:var(--text-sub);font-style:italic; }
+  .filter-result-info span { font-weight:600;color:var(--blue);font-style:normal; }
+  tr.filter-hidden { display:none; }
+
   /* FOOTER */
   .report-footer { background:var(--navy);color:rgba(255,255,255,0.4);text-align:center;padding:28px 24px;font-size:12px;letter-spacing:.05em; }
   .report-footer strong { color:var(--accent-lt); }
@@ -189,20 +208,68 @@
     <div class="chart-card"><span class="chart-label">Estructura</span><div class="chart-title">Costos Totales por Servicio</div><div class="chart-sub">Distribución de la inversión base</div><div style="height:280px"><canvas id="c-res-costos"></canvas></div></div>
     <div class="chart-card"><span class="chart-label">Rentabilidad</span><div class="chart-title">Ganancia por Grupo · Asociados</div><div class="chart-sub">Excedente generado sobre el costo</div><div style="height:280px"><canvas id="c-res-gan"></canvas></div></div>
   </div>
-  <div class="table-wrap"><h3>Tabla Consolidada de Precios 2026</h3><div class="table-scroll"><table>
-    <thead><tr><th>Servicio</th><th>Cliente</th><th>Part.</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Rent.</th><th>Ganancia Grupo</th></tr></thead>
+  <div class="filter-bar">
+    <span class="filter-label">🎯 &nbsp;Ver precios para:</span>
+    <button class="filter-btn active" data-filter="todos"><span class="dot dot-all"></span> Todos</button>
+    <button class="filter-btn" data-filter="asociados"><span class="dot dot-asoc"></span> Asociados</button>
+    <button class="filter-btn" data-filter="posibles"><span class="dot dot-pos"></span> Posibles Asociados</button>
+    <button class="filter-btn" data-filter="externos"><span class="dot dot-ext"></span> Externos</button>
+    <div class="filter-result-info">Mostrando <span id="filter-count">6</span> de 6 servicios</div>
+  </div>
+
+  <div class="table-wrap"><h3>Tabla Consolidada de Precios 2026</h3>
+  <div class="table-scroll"><table id="main-table">
+    <thead><tr>
+      <th>Servicio</th>
+      <th>Participantes</th>
+      <th>Precio Grupo</th>
+      <th>Precio / Persona</th>
+      <th>Rentabilidad</th>
+      <th>Ganancia Grupo</th>
+    </tr></thead>
     <tbody>
-      <tr><td>E-learning Metodología</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$3.837.804</td><td>$191.890</td><td>20%</td><td>$639.634</td></tr>
-      <tr><td>Taller Capacitación (5d)</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$5.060.000</td><td>$253.000</td><td>10%</td><td>$460.000</td></tr>
-      <tr><td>Taller Capacitación (5d)</td><td><span class="badge b-grey">Pos. Asociados</span></td><td>20</td><td>$5.750.000</td><td>$287.500</td><td>25%</td><td>$1.150.000</td></tr>
-      <tr><td>Taller Capacitación (5d)</td><td><span class="badge b-gold">Externos</span></td><td>20</td><td>$6.210.000</td><td>$310.500</td><td>35%</td><td>$1.610.000</td></tr>
-      <tr><td>Talleres de Formación</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$2.415.000</td><td>$120.750</td><td>15%</td><td>$315.000</td></tr>
-      <tr><td>Talleres de Formación</td><td><span class="badge b-grey">Pos. Asociados</span></td><td>20</td><td>$2.625.000</td><td>$131.250</td><td>25%</td><td>$525.000</td></tr>
-      <tr><td>Talleres de Formación</td><td><span class="badge b-gold">Externos</span></td><td>20</td><td>$2.835.000</td><td>$141.750</td><td>35%</td><td>$735.000</td></tr>
-      <tr class="row-hl"><td>Taller Sostenibilidad</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$51.229.500</td><td>$2.561.475</td><td>5%</td><td>$2.439.500</td></tr>
-      <tr class="row-hl"><td>Taller Sostenibilidad</td><td><span class="badge b-grey">Pos. Asociados</span></td><td>20</td><td>$56.108.500</td><td>$2.805.425</td><td>15%</td><td>$7.318.500</td></tr>
-      <tr class="row-hl"><td>Taller Sostenibilidad</td><td><span class="badge b-gold">Externos</span></td><td>20</td><td>$65.866.500</td><td>$3.293.325</td><td>35%</td><td>$17.076.500</td></tr>
-      <tr><td>Pasantías</td><td><span class="badge b-navy">General</span></td><td>20</td><td>$781.000</td><td>$39.050</td><td>10%</td><td>$71.000</td></tr>
+      <tr
+        data-asoc-grupo="$3.837.804"  data-asoc-pp="$191.890"  data-asoc-rent="20%" data-asoc-gan="$639.634"
+        data-pos-grupo="—"            data-pos-pp="—"           data-pos-rent="—"    data-pos-gan="—"
+        data-ext-grupo="—"            data-ext-pp="—"           data-ext-rent="—"    data-ext-gan="—">
+        <td>E-learning Metodología Microcrediticia</td><td>20</td>
+        <td class="col-grupo">$3.837.804</td><td class="col-pp">$191.890</td><td class="col-rent">20%</td><td class="col-gan">$639.634</td>
+      </tr>
+      <tr
+        data-asoc-grupo="$863.524"    data-asoc-pp="$21.588"   data-asoc-rent="15%" data-asoc-gan="$112.634"
+        data-pos-grupo="—"            data-pos-pp="—"           data-pos-rent="—"    data-pos-gan="—"
+        data-ext-grupo="—"            data-ext-pp="—"           data-ext-rent="—"    data-ext-gan="—">
+        <td>E-learning Educación Financiera <small style="color:var(--text-sub)">(hasta 40 usuarios)</small></td><td>40</td>
+        <td class="col-grupo">$863.524</td><td class="col-pp">$21.588</td><td class="col-rent">15%</td><td class="col-gan">$112.634</td>
+      </tr>
+      <tr
+        data-asoc-grupo="$5.060.000"  data-asoc-pp="$253.000"  data-asoc-rent="10%" data-asoc-gan="$460.000"
+        data-pos-grupo="$5.750.000"   data-pos-pp="$287.500"   data-pos-rent="25%"  data-pos-gan="$1.150.000"
+        data-ext-grupo="$6.210.000"   data-ext-pp="$310.500"   data-ext-rent="35%"  data-ext-gan="$1.610.000">
+        <td>Taller de Capacitación en Microfinanzas <small style="color:var(--text-sub)">(5 días)</small></td><td>20</td>
+        <td class="col-grupo">$5.060.000</td><td class="col-pp">$253.000</td><td class="col-rent">10%</td><td class="col-gan">$460.000</td>
+      </tr>
+      <tr
+        data-asoc-grupo="$2.415.000"  data-asoc-pp="$120.750"  data-asoc-rent="15%" data-asoc-gan="$315.000"
+        data-pos-grupo="$2.625.000"   data-pos-pp="$131.250"   data-pos-rent="25%"  data-pos-gan="$525.000"
+        data-ext-grupo="$2.835.000"   data-ext-pp="$141.750"   data-ext-rent="35%"  data-ext-gan="$735.000">
+        <td>Talleres de Formación en Microfinanzas</td><td>20</td>
+        <td class="col-grupo">$2.415.000</td><td class="col-pp">$120.750</td><td class="col-rent">15%</td><td class="col-gan">$315.000</td>
+      </tr>
+      <tr class="row-hl"
+        data-asoc-grupo="$51.229.500" data-asoc-pp="$2.561.475" data-asoc-rent="5%"  data-asoc-gan="$2.439.500"
+        data-pos-grupo="$56.108.500"  data-pos-pp="$2.805.425"  data-pos-rent="15%"  data-pos-gan="$7.318.500"
+        data-ext-grupo="$65.866.500"  data-ext-pp="$3.293.325"  data-ext-rent="35%"  data-ext-gan="$17.076.500">
+        <td>Taller Sostenibilidad para Entidades</td><td>20</td>
+        <td class="col-grupo">$51.229.500</td><td class="col-pp">$2.561.475</td><td class="col-rent">5%</td><td class="col-gan">$2.439.500</td>
+      </tr>
+      <tr
+        data-asoc-grupo="$781.000"    data-asoc-pp="$39.050"   data-asoc-rent="10%" data-asoc-gan="$71.000"
+        data-pos-grupo="$781.000"     data-pos-pp="$39.050"    data-pos-rent="10%"  data-pos-gan="$71.000"
+        data-ext-grupo="$781.000"     data-ext-pp="$39.050"    data-ext-rent="10%"  data-ext-gan="$71.000">
+        <td>Pasantías</td><td>20</td>
+        <td class="col-grupo">$781.000</td><td class="col-pp">$39.050</td><td class="col-rent">10%</td><td class="col-gan">$71.000</td>
+      </tr>
     </tbody>
   </table></div></div>
 </section>
@@ -383,10 +450,54 @@ const mOpts = () => ({
   scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{callback:v=>fmt(v)}}}
 });
 
-// RESUMEN
-new Chart('c-res-pp',{type:'bar',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[191890,253000,120750,2561475,39050],backgroundColor:P,borderRadius:5,borderSkipped:false}]},options:bOpts()});
-new Chart('c-res-costos',{type:'doughnut',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[3198170,4600000,2100000,48790000,710000],backgroundColor:P,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:dOpts()});
-new Chart('c-res-gan',{type:'bar',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[639634,460000,315000,2439500,71000],backgroundColor:P,borderRadius:5,borderSkipped:false}]},options:bOpts()});
+// RESUMEN charts
+const resData = {
+  todos:    { pp:[191890,253000,120750,2561475,39050],   gan:[639634,460000,315000,2439500,71000] },
+  asociados:{ pp:[191890,253000,120750,2561475,39050],   gan:[639634,460000,315000,2439500,71000] },
+  posibles: { pp:[null,287500,131250,2805425,39050],     gan:[null,1150000,525000,7318500,71000]  },
+  externos: { pp:[null,310500,141750,3293325,39050],     gan:[null,1610000,735000,17076500,71000] },
+};
+const clientLabels = { todos:'Todos los clientes', asociados:'Asociados', posibles:'Posibles Asociados', externos:'Externos' };
+
+const chartPP  = new Chart('c-res-pp',  {type:'bar', data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'], datasets:[{data:resData.todos.pp,  backgroundColor:P, borderRadius:5, borderSkipped:false}]}, options:bOpts()});
+const chartCostos = new Chart('c-res-costos',{type:'doughnut',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[3198170,4600000,2100000,48790000,710000],backgroundColor:P,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:dOpts()});
+const chartGan = new Chart('c-res-gan', {type:'bar', data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'], datasets:[{data:resData.todos.gan, backgroundColor:P, borderRadius:5, borderSkipped:false}]}, options:bOpts()});
+
+// FILTER
+const filterBtns = document.querySelectorAll('.filter-btn');
+const filterCount = document.getElementById('filter-count');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = btn.dataset.filter;
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // update table cells for each of the 6 service rows
+    const rows = document.querySelectorAll('#main-table tbody tr');
+    rows.forEach(row => {
+      const prefix = f === 'todos' ? 'asoc' : (f === 'asociados' ? 'asoc' : f === 'posibles' ? 'pos' : 'ext');
+      row.querySelector('.col-grupo').textContent = row.dataset[prefix+'Grupo'];
+      row.querySelector('.col-pp').textContent    = row.dataset[prefix+'Pp'];
+      row.querySelector('.col-rent').textContent  = row.dataset[prefix+'Rent'];
+      row.querySelector('.col-gan').textContent   = row.dataset[prefix+'Gan'];
+    });
+
+    // update counter badge
+    filterCount.textContent = '6';
+
+    // update charts
+    const d = resData[f] || resData.todos;
+    chartPP.data.datasets[0].data = d.pp;
+    chartPP.update('active');
+    chartGan.data.datasets[0].data = d.gan;
+    chartGan.update('active');
+
+    // update chart subtitle
+    const sub = document.querySelector('#resumen .chart-card.full .chart-sub');
+    if (sub) sub.textContent = 'Precio unitario por participante — ' + clientLabels[f];
+  });
+});
 
 // EDU
 const eL=['≤40','40-100','100-400','400-1K','1K-4K'];
