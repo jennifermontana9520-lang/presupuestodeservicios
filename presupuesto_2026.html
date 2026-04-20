@@ -463,39 +463,42 @@ const chartPP  = new Chart('c-res-pp',  {type:'bar', data:{labels:['E-learning M
 const chartCostos = new Chart('c-res-costos',{type:'doughnut',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[3198170,4600000,2100000,48790000,710000],backgroundColor:P,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:dOpts()});
 const chartGan = new Chart('c-res-gan', {type:'bar', data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'], datasets:[{data:resData.todos.gan, backgroundColor:P, borderRadius:5, borderSkipped:false}]}, options:bOpts()});
 
-// FILTER
-const filterBtns = document.querySelectorAll('.filter-btn');
-const filterCount = document.getElementById('filter-count');
+// Helper: get value from data attribute using exact attribute name
+function getAttr(row, prefix, field) {
+  return row.getAttribute('data-' + prefix + '-' + field) || '—';
+}
 
+// Apply filter to table rows
+function applyFilter(f) {
+  const prefix = (f === 'todos' || f === 'asociados') ? 'asoc' : f === 'posibles' ? 'pos' : 'ext';
+  const rows = document.querySelectorAll('#main-table tbody tr');
+  rows.forEach(row => {
+    row.querySelector('.col-grupo').textContent = getAttr(row, prefix, 'grupo');
+    row.querySelector('.col-pp').textContent    = getAttr(row, prefix, 'pp');
+    row.querySelector('.col-rent').textContent  = getAttr(row, prefix, 'rent');
+    row.querySelector('.col-gan').textContent   = getAttr(row, prefix, 'gan');
+  });
+  // update charts
+  const d = resData[f] || resData.todos;
+  chartPP.data.datasets[0].data = d.pp;
+  chartPP.update('active');
+  chartGan.data.datasets[0].data = d.gan;
+  chartGan.update('active');
+  // update subtitle
+  const sub = document.querySelector('#resumen .chart-card.full .chart-sub');
+  if (sub) sub.textContent = 'Precio unitario por participante — ' + (clientLabels[f] || 'Todos');
+}
+
+// Run on page load with "todos" (Asociados as default)
+applyFilter('todos');
+
+// FILTER button click
+const filterBtns = document.querySelectorAll('.filter-btn');
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    const f = btn.dataset.filter;
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    // update table cells for each of the 6 service rows
-    const rows = document.querySelectorAll('#main-table tbody tr');
-    rows.forEach(row => {
-      const prefix = f === 'todos' ? 'asoc' : (f === 'asociados' ? 'asoc' : f === 'posibles' ? 'pos' : 'ext');
-      row.querySelector('.col-grupo').textContent = row.dataset[prefix+'Grupo'];
-      row.querySelector('.col-pp').textContent    = row.dataset[prefix+'Pp'];
-      row.querySelector('.col-rent').textContent  = row.dataset[prefix+'Rent'];
-      row.querySelector('.col-gan').textContent   = row.dataset[prefix+'Gan'];
-    });
-
-    // update counter badge
-    filterCount.textContent = '6';
-
-    // update charts
-    const d = resData[f] || resData.todos;
-    chartPP.data.datasets[0].data = d.pp;
-    chartPP.update('active');
-    chartGan.data.datasets[0].data = d.gan;
-    chartGan.update('active');
-
-    // update chart subtitle
-    const sub = document.querySelector('#resumen .chart-card.full .chart-sub');
-    if (sub) sub.textContent = 'Precio unitario por participante — ' + clientLabels[f];
+    applyFilter(btn.dataset.filter);
   });
 });
 
