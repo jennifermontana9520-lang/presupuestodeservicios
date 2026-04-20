@@ -5,1010 +5,349 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portafolio de Servicios de Capacitación 2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink:       #0D1117;
-    --paper:     #F5F2EC;
-    --cream:     #EDE9E0;
-    --rust:      #C4541A;
-    --rust-lt:   #F0906A;
-    --teal:      #1A6E6E;
-    --teal-lt:   #3AADAA;
-    --gold:      #B8860B;
-    --gold-lt:   #E8C44A;
-    --muted:     #6B6459;
-    --border:    #D4CFC4;
-    --card:      #FFFDF8;
+    --navy:      #0B1F3A;
+    --navy-mid:  #15325A;
+    --blue:      #1B5299;
+    --blue-lt:   #2E7DD1;
+    --sky:       #5BA4E5;
+    --accent:    #C8A84B;
+    --accent-lt: #E8D08A;
+    --grey-dark: #3A4554;
+    --grey-mid:  #6B7A8D;
+    --grey-lt:   #B8C4D0;
+    --bg:        #F4F6F9;
+    --bg-card:   #FFFFFF;
+    --border:    #DDE3EC;
+    --text:      #1A2433;
+    --text-sub:  #5A6A7A;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.6;
-    font-size: 15px;
-  }
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1A3A6B 100%); color: #fff; position: relative; overflow: hidden; }
+  .hero-grid { position:absolute;inset:0;background-image:linear-gradient(rgba(91,164,229,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(91,164,229,0.06) 1px,transparent 1px);background-size:48px 48px;pointer-events:none; }
+  .hero-glow  { position:absolute;top:-160px;right:-160px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(46,125,209,0.22) 0%,transparent 65%);pointer-events:none; }
+  .hero-glow2 { position:absolute;bottom:-100px;left:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,168,75,0.12) 0%,transparent 65%);pointer-events:none; }
+  .hero-inner { max-width:1100px;margin:0 auto;padding:80px 40px 64px;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center; }
+  .hero-eyebrow { display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.20em;text-transform:uppercase;color:var(--accent-lt);margin-bottom:20px; }
+  .hero-eyebrow::before { content:'';display:block;width:28px;height:2px;background:var(--accent); }
+  .hero h1 { font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:700;line-height:1.12;color:#fff;margin-bottom:18px; }
+  .hero h1 em { font-style:italic;color:var(--sky); }
+  .hero-desc { font-size:16px;font-weight:300;color:rgba(255,255,255,0.62);max-width:500px;line-height:1.7; }
+  .hero-stats { display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.12);border-radius:12px;overflow:hidden;min-width:240px;align-self:start;margin-top:10px; }
+  .hero-stat { background:rgba(11,31,58,0.55);padding:20px 22px;text-align:center;backdrop-filter:blur(8px); }
+  .hero-stat .n { font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--accent-lt);line-height:1;display:block; }
+  .hero-stat .l { font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:5px;display:block; }
 
-  /* ── HERO ───────────────────────────────────── */
-  .hero {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 80px 40px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -120px; right: -120px;
-    width: 480px; height: 480px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(196,84,26,0.25) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -80px; left: 60px;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(26,110,110,0.2) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-  .hero-tag {
-    display: inline-block;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust-lt);
-    border: 1px solid rgba(196,84,26,0.5);
-    padding: 4px 12px;
-    border-radius: 2px;
-    margin-bottom: 24px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-  }
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-  }
-  .hero h1 span { color: var(--rust-lt); }
-  .hero-sub {
-    font-size: 16px;
-    color: rgba(245,242,236,0.65);
-    max-width: 520px;
-    font-weight: 300;
-  }
-  .hero-meta {
-    display: flex;
-    gap: 40px;
-    margin-top: 48px;
-    flex-wrap: wrap;
-  }
-  .hero-stat { }
-  .hero-stat .num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold-lt);
-  }
-  .hero-stat .lbl {
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    color: rgba(245,242,236,0.5);
-    text-transform: uppercase;
-  }
+  /* NAV */
+  .nav-wrap { background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.25); }
+  .nav-inner { max-width:1100px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none; }
+  .nav-inner::-webkit-scrollbar { display:none; }
+  .tab-btn { background:none;border:none;color:rgba(255,255,255,0.45);font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;padding:15px 22px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;letter-spacing:.02em; }
+  .tab-btn:hover { color:rgba(255,255,255,0.8); }
+  .tab-btn.active { color:#fff;border-bottom-color:var(--accent);font-weight:600; }
 
-  /* ── NAV TABS ───────────────────────────────── */
-  .nav-tabs {
-    background: var(--ink);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    display: flex;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .nav-tabs::-webkit-scrollbar { display: none; }
-  .tab-btn {
-    background: none;
-    border: none;
-    color: rgba(245,242,236,0.45);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 16px 24px;
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    letter-spacing: 0.03em;
-  }
-  .tab-btn:hover { color: var(--paper); }
-  .tab-btn.active {
-    color: var(--rust-lt);
-    border-bottom-color: var(--rust);
-  }
+  /* MAIN */
+  .main { max-width:1100px;margin:0 auto;padding:48px 24px 80px; }
+  .section { display:none; }
+  .section.active { display:block; }
 
-  /* ── MAIN LAYOUT ────────────────────────────── */
-  .main { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
+  /* SECTION HEADER */
+  .section-header { margin-bottom:36px;padding-bottom:22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:18px; }
+  .section-icon { width:44px;height:44px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0; }
+  .section-header h2 { font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--navy);letter-spacing:-0.01em;line-height:1.1; }
+  .section-header p { font-size:13px;color:var(--text-sub);margin-top:3px; }
 
-  .section { display: none; }
-  .section.active { display: block; }
+  /* KPI CARDS */
+  .kpi-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-bottom:36px; }
+  .kpi-card { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:22px 20px 18px;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s; }
+  .kpi-card:hover { box-shadow:0 6px 24px rgba(27,82,153,0.12);transform:translateY(-2px); }
+  .kpi-card::after { content:'';position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 10px 10px; }
+  .kpi-card.c1::after { background:linear-gradient(90deg,var(--blue),var(--sky)); }
+  .kpi-card.c2::after { background:linear-gradient(90deg,var(--navy),var(--blue)); }
+  .kpi-card.c3::after { background:linear-gradient(90deg,var(--accent),var(--accent-lt)); }
+  .kpi-card.c4::after { background:linear-gradient(90deg,var(--grey-dark),var(--grey-mid)); }
+  .kpi-icon { font-size:22px;margin-bottom:10px;opacity:.8; }
+  .kpi-label { font-size:11px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--text-sub);margin-bottom:8px; }
+  .kpi-value { font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--navy);line-height:1;letter-spacing:-.02em; }
+  .kpi-sub { font-size:12px;color:var(--grey-mid);margin-top:6px; }
 
-  /* ── SECTION TITLES ─────────────────────────── */
-  .section-header {
-    display: flex;
-    align-items: flex-end;
-    gap: 16px;
-    margin-bottom: 36px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-header h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.7rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-  .section-header .accent-line {
-    width: 40px; height: 3px;
-    background: var(--rust);
-    margin-bottom: 5px;
-    flex-shrink: 0;
-  }
+  /* CHART CARDS */
+  .chart-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:20px;margin-bottom:28px; }
+  .chart-card { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:26px 22px 22px;box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .chart-card.full { grid-column:1/-1; }
+  .chart-label { display:inline-block;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:rgba(27,82,153,0.08);padding:3px 10px;border-radius:20px;margin-bottom:8px; }
+  .chart-title { font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:3px;line-height:1.3; }
+  .chart-sub { font-size:12.5px;color:var(--text-sub);margin-bottom:18px; }
 
-  /* ── KPI CARDS ──────────────────────────────── */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  .kpi-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px 20px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .kpi-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(13,17,23,0.1);
-  }
-  .kpi-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-  .kpi-card.rust::before  { background: var(--rust); }
-  .kpi-card.teal::before  { background: var(--teal); }
-  .kpi-card.gold::before  { background: var(--gold); }
-  .kpi-card.ink::before   { background: var(--ink); }
-  .kpi-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  .kpi-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.65rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    line-height: 1;
-  }
-  .kpi-sub {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 6px;
-  }
+  /* TABLE */
+  .table-wrap { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .table-wrap h3 { font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--navy);padding:18px 22px 14px;border-bottom:1px solid var(--border); }
+  .table-scroll { overflow-x:auto; }
+  table { width:100%;border-collapse:collapse;font-size:13.5px; }
+  thead tr { background:var(--navy); }
+  thead th { font-size:11px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:rgba(255,255,255,0.75);padding:13px 18px;text-align:left;white-space:nowrap; }
+  thead th:not(:first-child) { text-align:right; }
+  tbody tr { border-bottom:1px solid var(--border);transition:background .15s; }
+  tbody tr:last-child { border-bottom:none; }
+  tbody tr:hover { background:rgba(27,82,153,0.04); }
+  tbody td { padding:11px 18px;vertical-align:middle; }
+  tbody td:not(:first-child) { text-align:right;font-variant-numeric:tabular-nums; }
+  .row-hl { background:rgba(200,168,75,0.06); }
+  .badge { display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:4px;letter-spacing:.04em; }
+  .b-blue { background:rgba(27,82,153,0.10);color:var(--blue); }
+  .b-grey { background:rgba(58,69,84,0.10);color:var(--grey-dark); }
+  .b-gold { background:rgba(200,168,75,0.15);color:#7A5E00; }
+  .b-navy { background:rgba(11,31,58,0.08);color:var(--navy); }
 
-  /* ── CHART CARDS ────────────────────────────── */
-  .chart-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
-    gap: 24px;
-    margin-bottom: 32px;
-  }
-  .chart-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px 24px;
-  }
-  .chart-card.full { grid-column: 1 / -1; }
-  .chart-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    margin-bottom: 4px;
-  }
-  .chart-sub {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-  .chart-wrap { position: relative; }
+  /* COST CARDS */
+  .cost-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-bottom:28px; }
+  .cost-card { background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .cost-header { background:var(--navy);color:#fff;padding:13px 20px;font-family:'Playfair Display',serif;font-size:.9rem;font-weight:600; }
+  .cost-row { display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid var(--border);font-size:13.5px; }
+  .cost-row:last-child { border-bottom:none; }
+  .cost-row .lbl { color:var(--text-sub); }
+  .cost-row .val { font-weight:500;font-variant-numeric:tabular-nums; }
+  .cost-row.total-row { background:rgba(27,82,153,0.05);font-weight:600; }
+  .cost-row.total-row .lbl { color:var(--navy);font-weight:600; }
+  .cost-row.total-row .val { color:var(--blue); }
 
-  /* ── PRICE TABLE ────────────────────────────── */
-  .price-table-wrap { overflow-x: auto; margin-bottom: 32px; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-  thead tr {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  thead th {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 14px 16px;
-    text-align: left;
-  }
-  thead th:not(:first-child) { text-align: right; }
-  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-  tbody tr:hover { background: var(--cream); }
-  tbody td { padding: 12px 16px; }
-  tbody td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
-  .badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    padding: 2px 10px;
-    border-radius: 20px;
-  }
-  .badge-rust  { background: rgba(196,84,26,0.12); color: var(--rust); }
-  .badge-teal  { background: rgba(26,110,110,0.12); color: var(--teal); }
-  .badge-gold  { background: rgba(184,134,11,0.12); color: var(--gold); }
-  .badge-ink   { background: rgba(13,17,23,0.08);  color: var(--ink); }
-  .highlight-row { background: rgba(196,84,26,0.04); }
+  /* FOOTER */
+  .report-footer { background:var(--navy);color:rgba(255,255,255,0.4);text-align:center;padding:28px 24px;font-size:12px;letter-spacing:.05em; }
+  .report-footer strong { color:var(--accent-lt); }
 
-  /* ── COST BREAKDOWN ─────────────────────────── */
-  .cost-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 32px;
-  }
-  .cost-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .cost-card-header {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 14px 20px;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-  }
-  .cost-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border-bottom: 1px solid var(--border);
-    font-size: 13.5px;
-  }
-  .cost-row:last-child { border-bottom: none; }
-  .cost-row.total {
-    background: var(--cream);
-    font-weight: 600;
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-  }
-  .cost-row .cost-lbl { color: var(--muted); }
-  .cost-row.total .cost-lbl { color: var(--ink); }
-  .cost-row .cost-val { font-variant-numeric: tabular-nums; font-weight: 500; }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  .section.active > * { animation:fadeUp .35s ease both; }
+  .section.active .kpi-card:nth-child(2){animation-delay:.05s}
+  .section.active .kpi-card:nth-child(3){animation-delay:.10s}
+  .section.active .kpi-card:nth-child(4){animation-delay:.15s}
 
-  /* ── ELEARNING RANGE TABLE ──────────────────── */
-  .range-indicator {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-  }
-  .range-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--rust);
-    flex-shrink: 0;
-  }
-
-  /* ── FOOTER ─────────────────────────────────── */
-  .report-footer {
-    background: var(--ink);
-    color: rgba(245,242,236,0.45);
-    text-align: center;
-    padding: 32px 24px;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-  }
-  .report-footer strong { color: var(--rust-lt); }
-
-  /* ── ANIMATIONS ─────────────────────────────── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .section.active .kpi-card,
-  .section.active .chart-card,
-  .section.active .cost-card {
-    animation: fadeUp 0.4s ease both;
-  }
-  .section.active .kpi-card:nth-child(2) { animation-delay: 0.06s; }
-  .section.active .kpi-card:nth-child(3) { animation-delay: 0.12s; }
-  .section.active .kpi-card:nth-child(4) { animation-delay: 0.18s; }
-
-  @media (max-width: 600px) {
-    .hero { padding: 48px 20px 40px; }
-    .chart-grid { grid-template-columns: 1fr; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  @media(max-width:700px){
+    .hero-inner{grid-template-columns:1fr}
+    .hero-stats{display:flex;flex-wrap:wrap}
+    .chart-grid{grid-template-columns:1fr}
+    .kpi-grid{grid-template-columns:1fr 1fr}
+    .main{padding:32px 16px 60px}
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
   <div class="hero-inner">
-    <div class="hero-tag">Informe de Presupuesto</div>
-    <h1>Servicios de<br><span>Capacitación</span> 2026</h1>
-    <p class="hero-sub">Portafolio de precios, costos y rentabilidad para cotizaciones con entidades del sector microfinanciero.</p>
-    <div class="hero-meta">
-      <div class="hero-stat">
-        <div class="num">6</div>
-        <div class="lbl">Servicios</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">3</div>
-        <div class="lbl">Tipos de cliente</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">$710K</div>
-        <div class="lbl">Costo mínimo</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">$48.8M</div>
-        <div class="lbl">Costo máximo</div>
-      </div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">Informe de Presupuesto · 2026</div>
+      <h1>Servicios de<br><em>Capacitación</em><br>Microfinanciera</h1>
+      <p class="hero-desc">Portafolio de precios, costos y rentabilidad para cotizaciones con entidades del sector microfinanciero colombiano.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="n">6</span><span class="l">Servicios</span></div>
+      <div class="hero-stat"><span class="n">3</span><span class="l">Tipos cliente</span></div>
+      <div class="hero-stat"><span class="n">$710K</span><span class="l">Costo mín.</span></div>
+      <div class="hero-stat"><span class="n">$48.8M</span><span class="l">Costo máx.</span></div>
     </div>
   </div>
-</div>
+</header>
 
-<!-- NAV -->
-<nav class="nav-tabs" id="mainNav">
-  <button class="tab-btn active" data-target="resumen">Resumen General</button>
-  <button class="tab-btn" data-target="elearning-edu">E-learning Edu. Financiera</button>
-  <button class="tab-btn" data-target="elearning-met">E-learning Metodología</button>
-  <button class="tab-btn" data-target="taller-cap">Taller Capacitación</button>
-  <button class="tab-btn" data-target="talleres-form">Talleres Formación</button>
-  <button class="tab-btn" data-target="sostenibilidad">Sostenibilidad</button>
-  <button class="tab-btn" data-target="pasantias">Pasantías</button>
+<nav class="nav-wrap">
+  <div class="nav-inner">
+    <button class="tab-btn active" data-target="resumen">Resumen General</button>
+    <button class="tab-btn" data-target="edu">E-learning Edu. Financiera</button>
+    <button class="tab-btn" data-target="met">E-learning Metodología</button>
+    <button class="tab-btn" data-target="cap">Taller Capacitación</button>
+    <button class="tab-btn" data-target="form">Talleres Formación</button>
+    <button class="tab-btn" data-target="sos">Sostenibilidad</button>
+    <button class="tab-btn" data-target="pas">Pasantías</button>
+  </div>
 </nav>
 
 <main class="main">
 
-  <!-- ════════════════════════════════════════════════════ -->
-  <!-- SECCIÓN 1: RESUMEN -->
-  <!-- ════════════════════════════════════════════════════ -->
-  <section class="section active" id="resumen">
-    <div class="section-header">
-      <div class="accent-line"></div>
-      <h2>Resumen General del Portafolio</h2>
-    </div>
+<!-- RESUMEN -->
+<section class="section active" id="resumen">
+  <div class="section-header">
+    <div class="section-icon">📊</div>
+    <div><h2>Resumen General del Portafolio</h2><p>Visión consolidada de los 6 servicios de capacitación para 2026</p></div>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card c1"><div class="kpi-icon">💼</div><div class="kpi-label">Servicio más económico</div><div class="kpi-value">$710K</div><div class="kpi-sub">Pasantías · costo base</div></div>
+    <div class="kpi-card c2"><div class="kpi-icon">🏛️</div><div class="kpi-label">Servicio más costoso</div><div class="kpi-value">$48.8M</div><div class="kpi-sub">Taller Sostenibilidad</div></div>
+    <div class="kpi-card c3"><div class="kpi-icon">📈</div><div class="kpi-label">Mayor ganancia grupo</div><div class="kpi-value">$17M</div><div class="kpi-sub">Sostenibilidad · Externos</div></div>
+    <div class="kpi-card c4"><div class="kpi-icon">⚖️</div><div class="kpi-label">Rentabilidad promedio</div><div class="kpi-value">20%</div><div class="kpi-sub">Sobre costos base</div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card full"><span class="chart-label">Comparativo</span><div class="chart-title">Precio por Persona — Asociados</div><div class="chart-sub">Precio unitario cotizable por participante en COP</div><div style="height:280px"><canvas id="c-res-pp"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Estructura</span><div class="chart-title">Costos Totales por Servicio</div><div class="chart-sub">Distribución de la inversión base</div><div style="height:280px"><canvas id="c-res-costos"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Rentabilidad</span><div class="chart-title">Ganancia por Grupo · Asociados</div><div class="chart-sub">Excedente generado sobre el costo</div><div style="height:280px"><canvas id="c-res-gan"></canvas></div></div>
+  </div>
+  <div class="table-wrap"><h3>Tabla Consolidada de Precios 2026</h3><div class="table-scroll"><table>
+    <thead><tr><th>Servicio</th><th>Cliente</th><th>Part.</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Rent.</th><th>Ganancia Grupo</th></tr></thead>
+    <tbody>
+      <tr><td>E-learning Metodología</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$3.837.804</td><td>$191.890</td><td>20%</td><td>$639.634</td></tr>
+      <tr><td>Taller Capacitación (5d)</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$5.060.000</td><td>$253.000</td><td>10%</td><td>$460.000</td></tr>
+      <tr><td>Taller Capacitación (5d)</td><td><span class="badge b-grey">Pos. Asociados</span></td><td>20</td><td>$5.750.000</td><td>$287.500</td><td>25%</td><td>$1.150.000</td></tr>
+      <tr><td>Taller Capacitación (5d)</td><td><span class="badge b-gold">Externos</span></td><td>20</td><td>$6.210.000</td><td>$310.500</td><td>35%</td><td>$1.610.000</td></tr>
+      <tr><td>Talleres de Formación</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$2.415.000</td><td>$120.750</td><td>15%</td><td>$315.000</td></tr>
+      <tr><td>Talleres de Formación</td><td><span class="badge b-grey">Pos. Asociados</span></td><td>20</td><td>$2.625.000</td><td>$131.250</td><td>25%</td><td>$525.000</td></tr>
+      <tr><td>Talleres de Formación</td><td><span class="badge b-gold">Externos</span></td><td>20</td><td>$2.835.000</td><td>$141.750</td><td>35%</td><td>$735.000</td></tr>
+      <tr class="row-hl"><td>Taller Sostenibilidad</td><td><span class="badge b-blue">Asociados</span></td><td>20</td><td>$51.229.500</td><td>$2.561.475</td><td>5%</td><td>$2.439.500</td></tr>
+      <tr class="row-hl"><td>Taller Sostenibilidad</td><td><span class="badge b-grey">Pos. Asociados</span></td><td>20</td><td>$56.108.500</td><td>$2.805.425</td><td>15%</td><td>$7.318.500</td></tr>
+      <tr class="row-hl"><td>Taller Sostenibilidad</td><td><span class="badge b-gold">Externos</span></td><td>20</td><td>$65.866.500</td><td>$3.293.325</td><td>35%</td><td>$17.076.500</td></tr>
+      <tr><td>Pasantías</td><td><span class="badge b-navy">General</span></td><td>20</td><td>$781.000</td><td>$39.050</td><td>10%</td><td>$71.000</td></tr>
+    </tbody>
+  </table></div></div>
+</section>
 
-    <div class="kpi-grid">
-      <div class="kpi-card rust">
-        <div class="kpi-label">Servicio más económico</div>
-        <div class="kpi-value">$710K</div>
-        <div class="kpi-sub">Pasantías · Costo total</div>
-      </div>
-      <div class="kpi-card teal">
-        <div class="kpi-label">Servicio más costoso</div>
-        <div class="kpi-value">$48.8M</div>
-        <div class="kpi-sub">Taller Sostenibilidad</div>
-      </div>
-      <div class="kpi-card gold">
-        <div class="kpi-label">Mayor ganancia por grupo</div>
-        <div class="kpi-value">$17M</div>
-        <div class="kpi-sub">Sostenibilidad · Externos</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-label">Rentabilidad promedio</div>
-        <div class="kpi-value">20%</div>
-        <div class="kpi-sub">Sobre costos base</div>
-      </div>
-    </div>
+<!-- E-LEARNING EDU -->
+<section class="section" id="edu">
+  <div class="section-header"><div class="section-icon">💻</div><div><h2>E-learning Educación Financiera</h2><p>Precios escalonados por volumen · Plataforma Didacsis Virtual</p></div></div>
+  <div class="kpi-grid">
+    <div class="kpi-card c1"><div class="kpi-icon">👤</div><div class="kpi-label">Precio mín. / persona</div><div class="kpi-value">$424</div><div class="kpi-sub">1.000–4.000 usuarios</div></div>
+    <div class="kpi-card c2"><div class="kpi-icon">👥</div><div class="kpi-label">Precio máx. / persona</div><div class="kpi-value">$21.588</div><div class="kpi-sub">Hasta 40 usuarios</div></div>
+    <div class="kpi-card c3"><div class="kpi-icon">💰</div><div class="kpi-label">Mayor ganancia grupo</div><div class="kpi-value">$220.983</div><div class="kpi-sub">1.000–4.000 usuarios</div></div>
+    <div class="kpi-card c4"><div class="kpi-icon">📐</div><div class="kpi-label">Rentabilidad aplicada</div><div class="kpi-value">15%</div><div class="kpi-sub">Todos los rangos</div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><span class="chart-label">Economía de escala</span><div class="chart-title">Precio por Persona según Rango</div><div class="chart-sub">A mayor volumen, menor precio unitario</div><div style="height:260px"><canvas id="c-edu-pp"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Ganancia</span><div class="chart-title">Ganancia por Grupo según Rango</div><div class="chart-sub">Mayor volumen = mayor excedente total</div><div style="height:260px"><canvas id="c-edu-gan"></canvas></div></div>
+    <div class="chart-card full"><span class="chart-label">Comparativo</span><div class="chart-title">Costo Base vs Precio con Rentabilidad</div><div class="chart-sub">Por rango de usuarios · COP por grupo</div><div style="height:250px"><canvas id="c-edu-cp"></canvas></div></div>
+  </div>
+  <div class="table-wrap"><h3>Detalle por Rango de Usuarios</h3><div class="table-scroll"><table>
+    <thead><tr><th>Rango</th><th>Costo Total</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Pto. Equilibrio</th><th>Ganancia Grupo</th></tr></thead>
+    <tbody>
+      <tr><td>Hasta 40 usuarios</td><td>$750.890</td><td>$863.524</td><td>$21.588</td><td>$18.772</td><td>$112.634</td></tr>
+      <tr><td>40 – 100 usuarios</td><td>$890.120</td><td>$1.023.638</td><td>$10.236</td><td>$8.901</td><td>$133.518</td></tr>
+      <tr><td>100 – 400 usuarios</td><td>$1.053.150</td><td>$1.211.123</td><td>$3.028</td><td>$2.633</td><td>$157.973</td></tr>
+      <tr><td>400 – 1.000 usuarios</td><td>$1.244.740</td><td>$1.431.451</td><td>$1.431</td><td>$1.245</td><td>$186.711</td></tr>
+      <tr class="row-hl"><td>1.000 – 4.000 usuarios</td><td>$1.473.220</td><td>$1.694.203</td><td>$424</td><td>$368</td><td>$220.983</td></tr>
+    </tbody>
+  </table></div></div>
+</section>
 
-    <div class="chart-grid">
-      <div class="chart-card full">
-        <div class="chart-title">Precio por Persona — Comparativo entre Servicios (Asociados)</div>
-        <div class="chart-sub">Precio unitario cotizable por participante en pesos colombianos</div>
-        <div class="chart-wrap" style="height:300px">
-          <canvas id="chartPrecioPP"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Costos Totales por Servicio</div>
-        <div class="chart-sub">Estructura de inversión base</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartCostos"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Ganancia por Grupo · Asociados</div>
-        <div class="chart-sub">Excedente generado sobre costo</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartGanancia"></canvas>
-        </div>
-      </div>
-    </div>
+<!-- E-LEARNING METODOLOGÍA -->
+<section class="section" id="met">
+  <div class="section-header"><div class="section-icon">🎓</div><div><h2>E-learning Metodología Microcrediticia</h2><p>Formación virtual · 20 participantes base</p></div></div>
+  <div class="kpi-grid">
+    <div class="kpi-card c1"><div class="kpi-icon">🔢</div><div class="kpi-label">Costo total</div><div class="kpi-value">$3.198.170</div><div class="kpi-sub">20 participantes</div></div>
+    <div class="kpi-card c2"><div class="kpi-icon">🏷️</div><div class="kpi-label">Precio grupo · Asoc.</div><div class="kpi-value">$3.837.804</div><div class="kpi-sub">20% rentabilidad</div></div>
+    <div class="kpi-card c3"><div class="kpi-icon">👤</div><div class="kpi-label">Precio / persona</div><div class="kpi-value">$191.890</div><div class="kpi-sub">Asociados</div></div>
+    <div class="kpi-card c4"><div class="kpi-icon">💹</div><div class="kpi-label">Ganancia grupo</div><div class="kpi-value">$639.634</div><div class="kpi-sub">Sobre costo base</div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><span class="chart-label">Estructura</span><div class="chart-title">Composición del Costo</div><div class="chart-sub">Distribución porcentual del costo total</div><div style="height:270px"><canvas id="c-met-pie"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Financiero</span><div class="chart-title">Costo · Precio · Ganancia</div><div class="chart-sub">Relación financiera del servicio en COP</div><div style="height:270px"><canvas id="c-met-bar"></canvas></div></div>
+  </div>
+  <div class="cost-grid">
+    <div class="cost-card"><div class="cost-header">Costos Fijos</div><div class="cost-row"><span class="lbl">Formador</span><span class="val">$1.600.000</span></div><div class="cost-row"><span class="lbl">Materiales</span><span class="val">$0</span></div><div class="cost-row"><span class="lbl">Plataforma Didacsis + IVA</span><span class="val">$1.598.170</span></div><div class="cost-row total-row"><span class="lbl">Total de Costos</span><span class="val">$3.198.170</span></div></div>
+    <div class="cost-card"><div class="cost-header">Precios — Asociados (20% rentabilidad)</div><div class="cost-row"><span class="lbl">Punto de equilibrio / persona</span><span class="val">$159.909</span></div><div class="cost-row"><span class="lbl">Precio con rentabilidad (grupo)</span><span class="val">$3.837.804</span></div><div class="cost-row"><span class="lbl">Precio por persona</span><span class="val">$191.890</span></div><div class="cost-row total-row"><span class="lbl">Ganancia por grupo</span><span class="val">$639.634</span></div></div>
+  </div>
+</section>
 
-    <div class="price-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Servicio</th>
-            <th>Tipo Cliente</th>
-            <th>Participantes</th>
-            <th>Precio Grupo</th>
-            <th>Precio / Persona</th>
-            <th>Rentabilidad</th>
-            <th>Ganancia Grupo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>E-learning Metodología Microcrediticia</td>
-            <td><span class="badge badge-teal">Asociados</span></td>
-            <td>20</td>
-            <td>$3.837.804</td>
-            <td>$191.890</td>
-            <td>20%</td>
-            <td>$639.634</td>
-          </tr>
-          <tr>
-            <td>Taller de Capacitación (5 días)</td>
-            <td><span class="badge badge-teal">Asociados</span></td>
-            <td>20</td>
-            <td>$5.060.000</td>
-            <td>$253.000</td>
-            <td>10%</td>
-            <td>$460.000</td>
-          </tr>
-          <tr>
-            <td>Taller de Capacitación (5 días)</td>
-            <td><span class="badge badge-gold">Pos. Asociados</span></td>
-            <td>20</td>
-            <td>$5.750.000</td>
-            <td>$287.500</td>
-            <td>25%</td>
-            <td>$1.150.000</td>
-          </tr>
-          <tr>
-            <td>Taller de Capacitación (5 días)</td>
-            <td><span class="badge badge-rust">Externos</span></td>
-            <td>20</td>
-            <td>$6.210.000</td>
-            <td>$310.500</td>
-            <td>35%</td>
-            <td>$1.610.000</td>
-          </tr>
-          <tr>
-            <td>Talleres de Formación en Microfinanzas</td>
-            <td><span class="badge badge-teal">Asociados</span></td>
-            <td>20</td>
-            <td>$2.415.000</td>
-            <td>$120.750</td>
-            <td>15%</td>
-            <td>$315.000</td>
-          </tr>
-          <tr>
-            <td>Talleres de Formación en Microfinanzas</td>
-            <td><span class="badge badge-gold">Pos. Asociados</span></td>
-            <td>20</td>
-            <td>$2.625.000</td>
-            <td>$131.250</td>
-            <td>25%</td>
-            <td>$525.000</td>
-          </tr>
-          <tr>
-            <td>Talleres de Formación en Microfinanzas</td>
-            <td><span class="badge badge-rust">Externos</span></td>
-            <td>20</td>
-            <td>$2.835.000</td>
-            <td>$141.750</td>
-            <td>35%</td>
-            <td>$735.000</td>
-          </tr>
-          <tr class="highlight-row">
-            <td>Taller Sostenibilidad para Entidades</td>
-            <td><span class="badge badge-teal">Asociados</span></td>
-            <td>20</td>
-            <td>$51.229.500</td>
-            <td>$2.561.475</td>
-            <td>5%</td>
-            <td>$2.439.500</td>
-          </tr>
-          <tr class="highlight-row">
-            <td>Taller Sostenibilidad para Entidades</td>
-            <td><span class="badge badge-gold">Pos. Asociados</span></td>
-            <td>20</td>
-            <td>$56.108.500</td>
-            <td>$2.805.425</td>
-            <td>15%</td>
-            <td>$7.318.500</td>
-          </tr>
-          <tr class="highlight-row">
-            <td>Taller Sostenibilidad para Entidades</td>
-            <td><span class="badge badge-rust">Externos</span></td>
-            <td>20</td>
-            <td>$65.866.500</td>
-            <td>$3.293.325</td>
-            <td>35%</td>
-            <td>$17.076.500</td>
-          </tr>
-          <tr>
-            <td>Pasantías</td>
-            <td><span class="badge badge-ink">General</span></td>
-            <td>20</td>
-            <td>$781.000</td>
-            <td>$39.050</td>
-            <td>10%</td>
-            <td>$71.000</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+<!-- TALLER CAPACITACIÓN -->
+<section class="section" id="cap">
+  <div class="section-header"><div class="section-icon">📋</div><div><h2>Taller de Capacitación en Microfinanzas</h2><p>5 días · Formador especializado · 20 participantes base</p></div></div>
+  <div class="kpi-grid">
+    <div class="kpi-card c1"><div class="kpi-icon">💵</div><div class="kpi-label">Costo total base</div><div class="kpi-value">$4.600.000</div><div class="kpi-sub">20 participantes</div></div>
+    <div class="kpi-card c2"><div class="kpi-icon">🤝</div><div class="kpi-label">Precio Asociados / p.</div><div class="kpi-value">$253.000</div><div class="kpi-sub">10% rentabilidad</div></div>
+    <div class="kpi-card c3"><div class="kpi-icon">🌐</div><div class="kpi-label">Precio Externos / p.</div><div class="kpi-value">$310.500</div><div class="kpi-sub">35% rentabilidad</div></div>
+    <div class="kpi-card c4"><div class="kpi-icon">🏆</div><div class="kpi-label">Mayor ganancia</div><div class="kpi-value">$1.610.000</div><div class="kpi-sub">Externos por grupo</div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><span class="chart-label">Precios</span><div class="chart-title">Precio por Persona · Tipo de Cliente</div><div class="chart-sub">Escalonamiento según vínculo comercial</div><div style="height:250px"><canvas id="c-cap-precio"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Ganancia</span><div class="chart-title">Ganancia por Grupo · Tipo de Cliente</div><div class="chart-sub">COP neto por evento realizado</div><div style="height:250px"><canvas id="c-cap-gan"></canvas></div></div>
+  </div>
+  <div class="table-wrap"><h3>Precios por Tipo de Cliente</h3><div class="table-scroll"><table>
+    <thead><tr><th>Tipo de Cliente</th><th>Rentabilidad</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Pto. Equilibrio</th><th>Ganancia Grupo</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge b-blue">Asociados</span></td><td>10%</td><td>$5.060.000</td><td>$253.000</td><td>$230.000</td><td>$460.000</td></tr>
+      <tr><td><span class="badge b-grey">Posibles Asociados</span></td><td>25%</td><td>$5.750.000</td><td>$287.500</td><td>$230.000</td><td>$1.150.000</td></tr>
+      <tr class="row-hl"><td><span class="badge b-gold">Externos</span></td><td>35%</td><td>$6.210.000</td><td>$310.500</td><td>$230.000</td><td>$1.610.000</td></tr>
+    </tbody>
+  </table></div></div>
+</section>
 
-  <!-- ════════════════════════════════════════════════════ -->
-  <!-- SECCIÓN 2: E-LEARNING EDU FINANCIERA -->
-  <!-- ════════════════════════════════════════════════════ -->
-  <section class="section" id="elearning-edu">
-    <div class="section-header">
-      <div class="accent-line"></div>
-      <h2>E-learning Educación Financiera</h2>
-    </div>
+<!-- TALLERES FORMACIÓN -->
+<section class="section" id="form">
+  <div class="section-header"><div class="section-icon">📚</div><div><h2>Talleres de Formación en Microfinanzas</h2><p>Presencial · Incluye alquiler de espacio · 20 participantes</p></div></div>
+  <div class="kpi-grid">
+    <div class="kpi-card c1"><div class="kpi-icon">💵</div><div class="kpi-label">Costo total base</div><div class="kpi-value">$2.100.000</div><div class="kpi-sub">20 participantes</div></div>
+    <div class="kpi-card c2"><div class="kpi-icon">🏢</div><div class="kpi-label">Alquiler de espacio</div><div class="kpi-value">$1.100.000</div><div class="kpi-sub">52% del costo total</div></div>
+    <div class="kpi-card c3"><div class="kpi-icon">🤝</div><div class="kpi-label">Precio Asociados / p.</div><div class="kpi-value">$120.750</div><div class="kpi-sub">15% rentabilidad</div></div>
+    <div class="kpi-card c4"><div class="kpi-icon">🏆</div><div class="kpi-label">Ganancia máxima</div><div class="kpi-value">$735.000</div><div class="kpi-sub">Externos por grupo</div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><span class="chart-label">Costos</span><div class="chart-title">Composición del Costo Total</div><div class="chart-sub">Fijos vs Variables · $2.100.000</div><div style="height:260px"><canvas id="c-form-costos"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Comparativo</span><div class="chart-title">Precio y Ganancia · Tipo de Cliente</div><div class="chart-sub">COP por grupo de 20 personas</div><div style="height:260px"><canvas id="c-form-precios"></canvas></div></div>
+  </div>
+  <div class="table-wrap"><h3>Precios por Tipo de Cliente</h3><div class="table-scroll"><table>
+    <thead><tr><th>Tipo de Cliente</th><th>Rentabilidad</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Pto. Equilibrio</th><th>Ganancia Grupo</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge b-blue">Asociados</span></td><td>15%</td><td>$2.415.000</td><td>$120.750</td><td>$105.000</td><td>$315.000</td></tr>
+      <tr><td><span class="badge b-grey">Posibles Asociados</span></td><td>25%</td><td>$2.625.000</td><td>$131.250</td><td>$105.000</td><td>$525.000</td></tr>
+      <tr class="row-hl"><td><span class="badge b-gold">Externos</span></td><td>35%</td><td>$2.835.000</td><td>$141.750</td><td>$105.000</td><td>$735.000</td></tr>
+    </tbody>
+  </table></div></div>
+</section>
 
-    <div class="kpi-grid">
-      <div class="kpi-card rust">
-        <div class="kpi-label">Precio mínimo / persona</div>
-        <div class="kpi-value">$424</div>
-        <div class="kpi-sub">Rango 1.000–4.000 usuarios</div>
-      </div>
-      <div class="kpi-card teal">
-        <div class="kpi-label">Precio máximo / persona</div>
-        <div class="kpi-value">$21.588</div>
-        <div class="kpi-sub">Rango hasta 40 usuarios</div>
-      </div>
-      <div class="kpi-card gold">
-        <div class="kpi-label">Mayor ganancia grupo</div>
-        <div class="kpi-value">$220.983</div>
-        <div class="kpi-sub">Rango 1.000–4.000 usuarios</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-label">Rentabilidad aplicada</div>
-        <div class="kpi-value">15%</div>
-        <div class="kpi-sub">Todos los rangos · Asociados</div>
-      </div>
-    </div>
+<!-- SOSTENIBILIDAD -->
+<section class="section" id="sos">
+  <div class="section-header"><div class="section-icon">🌱</div><div><h2>Taller Sostenibilidad para Entidades</h2><p>Servicio premium · Capacitador especializado · Incluye IVA 19%</p></div></div>
+  <div class="kpi-grid">
+    <div class="kpi-card c1"><div class="kpi-icon">💵</div><div class="kpi-label">Costo total (incl. IVA)</div><div class="kpi-value">$48.790.000</div><div class="kpi-sub">Capacitador + IVA 19%</div></div>
+    <div class="kpi-card c2"><div class="kpi-icon">🤝</div><div class="kpi-label">Precio Asociados</div><div class="kpi-value">$51.229.500</div><div class="kpi-sub">5% rentabilidad</div></div>
+    <div class="kpi-card c3"><div class="kpi-icon">🌐</div><div class="kpi-label">Precio Externos</div><div class="kpi-value">$65.866.500</div><div class="kpi-sub">35% rentabilidad</div></div>
+    <div class="kpi-card c4"><div class="kpi-icon">🏆</div><div class="kpi-label">Ganancia Externos</div><div class="kpi-value">$17.076.500</div><div class="kpi-sub">Mayor del portafolio</div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><span class="chart-label">Precios</span><div class="chart-title">Precio Total por Tipo de Cliente</div><div class="chart-sub">Impacto del % de rentabilidad sobre precio</div><div style="height:260px"><canvas id="c-sos-precio"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Ganancia</span><div class="chart-title">Ganancia Neta por Grupo</div><div class="chart-sub">Excedente sobre costo total</div><div style="height:260px"><canvas id="c-sos-gan"></canvas></div></div>
+    <div class="chart-card full"><span class="chart-label">Apilado</span><div class="chart-title">Costo Base + Margen según Tipo de Cliente</div><div class="chart-sub">El costo base es común; el margen varía según la relación comercial</div><div style="height:240px"><canvas id="c-sos-stack"></canvas></div></div>
+  </div>
+  <div class="table-wrap"><h3>Precios por Tipo de Cliente</h3><div class="table-scroll"><table>
+    <thead><tr><th>Tipo de Cliente</th><th>Rentabilidad</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Pto. Equilibrio</th><th>Ganancia Grupo</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge b-blue">Asociados</span></td><td>5%</td><td>$51.229.500</td><td>$2.561.475</td><td>$2.439.500</td><td>$2.439.500</td></tr>
+      <tr><td><span class="badge b-grey">Posibles Asociados</span></td><td>15%</td><td>$56.108.500</td><td>$2.805.425</td><td>$2.439.500</td><td>$7.318.500</td></tr>
+      <tr class="row-hl"><td><span class="badge b-gold">Externos</span></td><td>35%</td><td>$65.866.500</td><td>$3.293.325</td><td>$2.439.500</td><td>$17.076.500</td></tr>
+    </tbody>
+  </table></div></div>
+</section>
 
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div class="chart-title">Precio por Persona según Rango de Usuarios</div>
-        <div class="chart-sub">A mayor volumen, menor precio unitario</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartEduPP"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Ganancia por Grupo según Rango</div>
-        <div class="chart-sub">Economía de escala en la plataforma</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartEduGanancia"></canvas>
-        </div>
-      </div>
-      <div class="chart-card full">
-        <div class="chart-title">Costo vs Precio con Rentabilidad — Todos los Rangos</div>
-        <div class="chart-sub">Comparación de costo base y precio a cobrar por grupo</div>
-        <div class="chart-wrap" style="height:260px">
-          <canvas id="chartEduCostoPrecio"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <div class="price-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Rango de Usuarios</th>
-            <th>Costo Total</th>
-            <th>Precio Grupo (c/rent.)</th>
-            <th>Precio / Persona</th>
-            <th>Pto. Equilibrio / persona</th>
-            <th>Ganancia Grupo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><div class="range-indicator"><div class="range-dot"></div>Hasta 40 usuarios</div></td>
-            <td>$750.890</td><td>$863.524</td><td>$21.588</td><td>$18.772</td><td>$112.634</td>
-          </tr>
-          <tr>
-            <td><div class="range-indicator"><div class="range-dot" style="background:var(--teal)"></div>40 – 100 usuarios</div></td>
-            <td>$890.120</td><td>$1.023.638</td><td>$10.236</td><td>$8.901</td><td>$133.518</td>
-          </tr>
-          <tr>
-            <td><div class="range-indicator"><div class="range-dot" style="background:var(--gold)"></div>100 – 400 usuarios</div></td>
-            <td>$1.053.150</td><td>$1.211.123</td><td>$3.028</td><td>$2.633</td><td>$157.973</td>
-          </tr>
-          <tr>
-            <td><div class="range-indicator"><div class="range-dot" style="background:#6B6459"></div>400 – 1.000 usuarios</div></td>
-            <td>$1.244.740</td><td>$1.431.451</td><td>$1.431</td><td>$1.245</td><td>$186.711</td>
-          </tr>
-          <tr class="highlight-row">
-            <td><div class="range-indicator"><div class="range-dot" style="background:var(--ink)"></div>1.000 – 4.000 usuarios</div></td>
-            <td>$1.473.220</td><td>$1.694.203</td><td>$424</td><td>$368</td><td>$220.983</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════════════ -->
-  <!-- SECCIÓN 3: E-LEARNING METODOLOGÍA -->
-  <!-- ════════════════════════════════════════════════════ -->
-  <section class="section" id="elearning-met">
-    <div class="section-header">
-      <div class="accent-line"></div>
-      <h2>E-learning Metodología Microcrediticia</h2>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi-card rust">
-        <div class="kpi-label">Costo total</div>
-        <div class="kpi-value">$3.198.170</div>
-        <div class="kpi-sub">20 participantes base</div>
-      </div>
-      <div class="kpi-card teal">
-        <div class="kpi-label">Precio grupo (Asociados)</div>
-        <div class="kpi-value">$3.837.804</div>
-        <div class="kpi-sub">Rentabilidad 20%</div>
-      </div>
-      <div class="kpi-card gold">
-        <div class="kpi-label">Precio / persona</div>
-        <div class="kpi-value">$191.890</div>
-        <div class="kpi-sub">Asociados</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-label">Ganancia grupo</div>
-        <div class="kpi-value">$639.634</div>
-        <div class="kpi-sub">Sobre costo base</div>
-      </div>
-    </div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div class="chart-title">Estructura de Costos</div>
-        <div class="chart-sub">Distribución del costo total</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartMetCostos"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Costo vs Precio vs Ganancia</div>
-        <div class="chart-sub">Relación financiera del servicio</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartMetRelacion"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="cost-grid">
-      <div class="cost-card">
-        <div class="cost-card-header">Costos Fijos</div>
-        <div class="cost-row"><span class="cost-lbl">Formador</span><span class="cost-val">$1.600.000</span></div>
-        <div class="cost-row"><span class="cost-lbl">Materiales</span><span class="cost-val">$0</span></div>
-        <div class="cost-row"><span class="cost-lbl">Plataforma Didacsis + IVA</span><span class="cost-val">$1.598.170</span></div>
-        <div class="cost-row total"><span class="cost-lbl">Total Costos</span><span class="cost-val">$3.198.170</span></div>
-      </div>
-      <div class="cost-card">
-        <div class="cost-card-header">Precios — Asociados (20% rentabilidad)</div>
-        <div class="cost-row"><span class="cost-lbl">Punto de equilibrio / persona</span><span class="cost-val">$159.909</span></div>
-        <div class="cost-row"><span class="cost-lbl">Precio con rentabilidad (grupo)</span><span class="cost-val">$3.837.804</span></div>
-        <div class="cost-row"><span class="cost-lbl">Precio por persona</span><span class="cost-val">$191.890</span></div>
-        <div class="cost-row total"><span class="cost-lbl">Ganancia por grupo</span><span class="cost-val">$639.634</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════════════ -->
-  <!-- SECCIÓN 4: TALLER CAPACITACIÓN -->
-  <!-- ════════════════════════════════════════════════════ -->
-  <section class="section" id="taller-cap">
-    <div class="section-header">
-      <div class="accent-line"></div>
-      <h2>Taller de Capacitación en Microfinanzas (5 días)</h2>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi-card rust">
-        <div class="kpi-label">Costo total base</div>
-        <div class="kpi-value">$4.600.000</div>
-        <div class="kpi-sub">20 participantes</div>
-      </div>
-      <div class="kpi-card teal">
-        <div class="kpi-label">Precio Asociados / persona</div>
-        <div class="kpi-value">$253.000</div>
-        <div class="kpi-sub">Rentabilidad 10%</div>
-      </div>
-      <div class="kpi-card gold">
-        <div class="kpi-label">Precio Externos / persona</div>
-        <div class="kpi-value">$310.500</div>
-        <div class="kpi-sub">Rentabilidad 35%</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-label">Mayor ganancia</div>
-        <div class="kpi-value">$1.610.000</div>
-        <div class="kpi-sub">Externos · por grupo</div>
-      </div>
-    </div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div class="chart-title">Precio por Persona según Tipo de Cliente</div>
-        <div class="chart-sub">Escalonamiento de precios</div>
-        <div class="chart-wrap" style="height:260px">
-          <canvas id="chartCapPrecio"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Ganancia por Grupo según Tipo de Cliente</div>
-        <div class="chart-sub">COP por evento</div>
-        <div class="chart-wrap" style="height:260px">
-          <canvas id="chartCapGanancia"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="price-table-wrap">
-      <table>
-        <thead>
-          <tr><th>Tipo de Cliente</th><th>% Rentabilidad</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Pto. Equilibrio</th><th>Ganancia Grupo</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="badge badge-teal">Asociados</span></td><td>10%</td><td>$5.060.000</td><td>$253.000</td><td>$230.000</td><td>$460.000</td></tr>
-          <tr><td><span class="badge badge-gold">Posibles Asociados</span></td><td>25%</td><td>$5.750.000</td><td>$287.500</td><td>$230.000</td><td>$1.150.000</td></tr>
-          <tr class="highlight-row"><td><span class="badge badge-rust">Externos</span></td><td>35%</td><td>$6.210.000</td><td>$310.500</td><td>$230.000</td><td>$1.610.000</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════════════ -->
-  <!-- SECCIÓN 5: TALLERES FORMACIÓN -->
-  <!-- ════════════════════════════════════════════════════ -->
-  <section class="section" id="talleres-form">
-    <div class="section-header">
-      <div class="accent-line"></div>
-      <h2>Talleres de Formación en Microfinanzas</h2>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi-card rust">
-        <div class="kpi-label">Costo total base</div>
-        <div class="kpi-value">$2.100.000</div>
-        <div class="kpi-sub">20 participantes</div>
-      </div>
-      <div class="kpi-card teal">
-        <div class="kpi-label">Alquiler de espacio</div>
-        <div class="kpi-value">$1.100.000</div>
-        <div class="kpi-sub">52% del costo variable</div>
-      </div>
-      <div class="kpi-card gold">
-        <div class="kpi-label">Precio Asociados / persona</div>
-        <div class="kpi-value">$120.750</div>
-        <div class="kpi-sub">Rentabilidad 15%</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-label">Ganancia máxima</div>
-        <div class="kpi-value">$735.000</div>
-        <div class="kpi-sub">Externos · por grupo</div>
-      </div>
-    </div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div class="chart-title">Estructura de Costos Fijos vs Variables</div>
-        <div class="chart-sub">Distribución del costo total ($2.100.000)</div>
-        <div class="chart-wrap" style="height:260px">
-          <canvas id="chartFormCostos"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Precios y Ganancias por Tipo de Cliente</div>
-        <div class="chart-sub">COP por grupo de 20 personas</div>
-        <div class="chart-wrap" style="height:260px">
-          <canvas id="chartFormPrecios"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="price-table-wrap">
-      <table>
-        <thead>
-          <tr><th>Tipo de Cliente</th><th>% Rentabilidad</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Pto. Equilibrio</th><th>Ganancia Grupo</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="badge badge-teal">Asociados</span></td><td>15%</td><td>$2.415.000</td><td>$120.750</td><td>$105.000</td><td>$315.000</td></tr>
-          <tr><td><span class="badge badge-gold">Posibles Asociados</span></td><td>25%</td><td>$2.625.000</td><td>$131.250</td><td>$105.000</td><td>$525.000</td></tr>
-          <tr class="highlight-row"><td><span class="badge badge-rust">Externos</span></td><td>35%</td><td>$2.835.000</td><td>$141.750</td><td>$105.000</td><td>$735.000</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════════════ -->
-  <!-- SECCIÓN 6: SOSTENIBILIDAD -->
-  <!-- ════════════════════════════════════════════════════ -->
-  <section class="section" id="sostenibilidad">
-    <div class="section-header">
-      <div class="accent-line"></div>
-      <h2>Taller Sostenibilidad para Entidades</h2>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi-card rust">
-        <div class="kpi-label">Costo total (incl. IVA)</div>
-        <div class="kpi-value">$48.790.000</div>
-        <div class="kpi-sub">Capacitador + IVA 19%</div>
-      </div>
-      <div class="kpi-card teal">
-        <div class="kpi-label">Precio Asociados</div>
-        <div class="kpi-value">$51.229.500</div>
-        <div class="kpi-sub">5% rentabilidad</div>
-      </div>
-      <div class="kpi-card gold">
-        <div class="kpi-label">Precio Externos</div>
-        <div class="kpi-value">$65.866.500</div>
-        <div class="kpi-sub">35% rentabilidad</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-label">Ganancia Externos</div>
-        <div class="kpi-value">$17.076.500</div>
-        <div class="kpi-sub">Mayor en el portafolio</div>
-      </div>
-    </div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div class="chart-title">Precio Total por Tipo de Cliente</div>
-        <div class="chart-sub">Impacto del % de rentabilidad sobre el precio grupo</div>
-        <div class="chart-wrap" style="height:260px">
-          <canvas id="chartSosPrecio"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Ganancia por Grupo</div>
-        <div class="chart-sub">Excedente neto sobre costo total</div>
-        <div class="chart-wrap" style="height:260px">
-          <canvas id="chartSosGanancia"></canvas>
-        </div>
-      </div>
-      <div class="chart-card full">
-        <div class="chart-title">Desglose: Costo Base vs Rentabilidad Incremental</div>
-        <div class="chart-sub">Barras apiladas — base común más margen según tipo de cliente</div>
-        <div class="chart-wrap" style="height:240px">
-          <canvas id="chartSosStack"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="price-table-wrap">
-      <table>
-        <thead>
-          <tr><th>Tipo de Cliente</th><th>% Rentabilidad</th><th>Precio Grupo</th><th>Precio / Persona</th><th>Pto. Equilibrio</th><th>Ganancia Grupo</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="badge badge-teal">Asociados</span></td><td>5%</td><td>$51.229.500</td><td>$2.561.475</td><td>$2.439.500</td><td>$2.439.500</td></tr>
-          <tr><td><span class="badge badge-gold">Posibles Asociados</span></td><td>15%</td><td>$56.108.500</td><td>$2.805.425</td><td>$2.439.500</td><td>$7.318.500</td></tr>
-          <tr class="highlight-row"><td><span class="badge badge-rust">Externos</span></td><td>35%</td><td>$65.866.500</td><td>$3.293.325</td><td>$2.439.500</td><td>$17.076.500</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════════════ -->
-  <!-- SECCIÓN 7: PASANTÍAS -->
-  <!-- ════════════════════════════════════════════════════ -->
-  <section class="section" id="pasantias">
-    <div class="section-header">
-      <div class="accent-line"></div>
-      <h2>Pasantías</h2>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi-card rust">
-        <div class="kpi-label">Costo total</div>
-        <div class="kpi-value">$710.000</div>
-        <div class="kpi-sub">20 participantes</div>
-      </div>
-      <div class="kpi-card teal">
-        <div class="kpi-label">Precio con rentabilidad</div>
-        <div class="kpi-value">$781.000</div>
-        <div class="kpi-sub">10% de margen</div>
-      </div>
-      <div class="kpi-card gold">
-        <div class="kpi-label">Precio por persona</div>
-        <div class="kpi-value">$39.050</div>
-        <div class="kpi-sub">El más económico del portafolio</div>
-      </div>
-      <div class="kpi-card ink">
-        <div class="kpi-label">Ganancia grupo</div>
-        <div class="kpi-value">$71.000</div>
-        <div class="kpi-sub">Sobre costo base</div>
-      </div>
-    </div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div class="chart-title">Estructura de Costos</div>
-        <div class="chart-sub">Distribución del costo total ($710.000)</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartPasCostos"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Costo · Precio · Ganancia</div>
-        <div class="chart-sub">Relación financiera del servicio</div>
-        <div class="chart-wrap" style="height:280px">
-          <canvas id="chartPasRelacion"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="cost-grid">
-      <div class="cost-card">
-        <div class="cost-card-header">Costos Fijos</div>
-        <div class="cost-row"><span class="cost-lbl">Transporte</span><span class="cost-val">$600.000</span></div>
-        <div class="cost-row"><span class="cost-lbl">Almuerzo y snacks</span><span class="cost-val">$60.000</span></div>
-        <div class="cost-row"><span class="cost-lbl">Certificados</span><span class="cost-val">$50.000</span></div>
-        <div class="cost-row total"><span class="cost-lbl">Total</span><span class="cost-val">$710.000</span></div>
-      </div>
-      <div class="cost-card">
-        <div class="cost-card-header">Precio — General (10% rentabilidad)</div>
-        <div class="cost-row"><span class="cost-lbl">Punto de equilibrio / persona</span><span class="cost-val">$35.500</span></div>
-        <div class="cost-row"><span class="cost-lbl">Precio con rentabilidad (grupo)</span><span class="cost-val">$781.000</span></div>
-        <div class="cost-row"><span class="cost-lbl">Precio por persona</span><span class="cost-val">$39.050</span></div>
-        <div class="cost-row total"><span class="cost-lbl">Ganancia por grupo</span><span class="cost-val">$71.000</span></div>
-      </div>
-    </div>
-  </section>
+<!-- PASANTÍAS -->
+<section class="section" id="pas">
+  <div class="section-header"><div class="section-icon">🎯</div><div><h2>Pasantías</h2><p>Servicio de menor costo del portafolio · 20 participantes</p></div></div>
+  <div class="kpi-grid">
+    <div class="kpi-card c1"><div class="kpi-icon">💵</div><div class="kpi-label">Costo total</div><div class="kpi-value">$710.000</div><div class="kpi-sub">20 participantes</div></div>
+    <div class="kpi-card c2"><div class="kpi-icon">🏷️</div><div class="kpi-label">Precio con rentabilidad</div><div class="kpi-value">$781.000</div><div class="kpi-sub">10% de margen</div></div>
+    <div class="kpi-card c3"><div class="kpi-icon">👤</div><div class="kpi-label">Precio por persona</div><div class="kpi-value">$39.050</div><div class="kpi-sub">El más económico</div></div>
+    <div class="kpi-card c4"><div class="kpi-icon">💹</div><div class="kpi-label">Ganancia grupo</div><div class="kpi-value">$71.000</div><div class="kpi-sub">Sobre costo base</div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><span class="chart-label">Costos</span><div class="chart-title">Estructura de Costos</div><div class="chart-sub">Distribución del costo total ($710.000)</div><div style="height:270px"><canvas id="c-pas-pie"></canvas></div></div>
+    <div class="chart-card"><span class="chart-label">Financiero</span><div class="chart-title">Costo · Precio · Ganancia</div><div class="chart-sub">Relación financiera del servicio en COP</div><div style="height:270px"><canvas id="c-pas-bar"></canvas></div></div>
+  </div>
+  <div class="cost-grid">
+    <div class="cost-card"><div class="cost-header">Costos Fijos</div><div class="cost-row"><span class="lbl">Transporte</span><span class="val">$600.000</span></div><div class="cost-row"><span class="lbl">Almuerzo y snacks</span><span class="val">$60.000</span></div><div class="cost-row"><span class="lbl">Certificados</span><span class="val">$50.000</span></div><div class="cost-row total-row"><span class="lbl">Total</span><span class="val">$710.000</span></div></div>
+    <div class="cost-card"><div class="cost-header">Precios — General (10% rentabilidad)</div><div class="cost-row"><span class="lbl">Punto de equilibrio / persona</span><span class="val">$35.500</span></div><div class="cost-row"><span class="lbl">Precio con rentabilidad (grupo)</span><span class="val">$781.000</span></div><div class="cost-row"><span class="lbl">Precio por persona</span><span class="val">$39.050</span></div><div class="cost-row total-row"><span class="lbl">Ganancia por grupo</span><span class="val">$71.000</span></div></div>
+  </div>
+</section>
 
 </main>
 
 <footer class="report-footer">
-  Portafolio de Servicios de Capacitación <strong>2026</strong> &nbsp;·&nbsp;
-  Todos los valores en COP &nbsp;·&nbsp;
-  IVA no incluido salvo donde se indica &nbsp;·&nbsp;
-  Base: 20 participantes por grupo salvo E-learning Edu. Financiera
+  Portafolio de Servicios de Capacitación <strong>2026</strong> &nbsp;·&nbsp; Valores en COP · IVA no incluido salvo donde se indica &nbsp;·&nbsp; Base: 20 participantes por grupo
 </footer>
 
 <script>
-// ── TAB NAVIGATION ────────────────────────────────────────────────────────
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1018,283 +357,63 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-// ── CHART DEFAULTS ────────────────────────────────────────────────────────
-Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.family = "'Source Sans 3', sans-serif";
 Chart.defaults.font.size = 12;
-Chart.defaults.color = '#6B6459';
+Chart.defaults.color = '#5A6A7A';
 Chart.defaults.plugins.legend.labels.boxWidth = 12;
-Chart.defaults.plugins.legend.labels.padding = 16;
+Chart.defaults.plugins.legend.labels.padding = 14;
 
-const RUST   = '#C4541A';
-const RUST_A = 'rgba(196,84,26,0.15)';
-const TEAL   = '#1A6E6E';
-const TEAL_A = 'rgba(26,110,110,0.15)';
-const GOLD   = '#B8860B';
-const GOLD_A = 'rgba(184,134,11,0.15)';
-const INK    = '#0D1117';
-const INK_A  = 'rgba(13,17,23,0.1)';
+const NAVY='#0B1F3A', BLUE='#1B5299', BLUE2='#2E7DD1', SKY='#5BA4E5',
+      GOLD='#C8A84B', GREY='#6B7A8D';
+const P = [BLUE,SKY,GOLD,NAVY,GREY,BLUE2];
+const fmt = v => '$'+Math.round(v).toLocaleString('es-CO');
 
-const fmt = v => '$' + Math.round(v).toLocaleString('es-CO');
-
-function barOpts(title, indexAxis='x') {
-  return {
-    indexAxis,
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: { label: ctx => ' ' + fmt(ctx.parsed[indexAxis === 'x' ? 'y' : 'x']) }
-      }
-    },
-    scales: {
-      x: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { maxRotation: 30 } },
-      y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => fmt(v) } }
-    }
-  };
-}
-
-// ── RESUMEN ───────────────────────────────────────────────────────────────
-new Chart(document.getElementById('chartPrecioPP'), {
-  type: 'bar',
-  data: {
-    labels: ['E-learning Metodología','Taller Capacitación','Talleres Formación','Sostenibilidad','Pasantías'],
-    datasets: [{
-      label: 'Precio / Persona (COP)',
-      data: [191890, 253000, 120750, 2561475, 39050],
-      backgroundColor: [RUST, TEAL, GOLD, INK, RUST],
-      borderRadius: 4,
-      borderSkipped: false,
-    }]
-  },
-  options: { ...barOpts(), plugins: { legend:{display:false}, tooltip:{callbacks:{label:c=>' '+fmt(c.parsed.y)}}} }
+const bOpts = () => ({
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'  '+fmt(c.parsed.y)}}},
+  scales:{x:{grid:{display:false},ticks:{maxRotation:0}},y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{callback:v=>fmt(v)}}}
+});
+const dOpts = () => ({
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{display:true,position:'right',labels:{font:{size:12},padding:14}},tooltip:{callbacks:{label:c=>'  '+fmt(c.parsed)}}}
+});
+const mOpts = () => ({
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{display:true,position:'bottom'},tooltip:{callbacks:{label:c=>'  '+c.dataset.label+': '+fmt(c.parsed.y)}}},
+  scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{callback:v=>fmt(v)}}}
 });
 
-new Chart(document.getElementById('chartCostos'), {
-  type: 'doughnut',
-  data: {
-    labels: ['E-learning Metodología','Taller Capacitación','Talleres Formación','Sostenibilidad','Pasantías'],
-    datasets: [{
-      data: [3198170, 4600000, 2100000, 48790000, 710000],
-      backgroundColor: [RUST, TEAL, GOLD, INK, '#A0856B'],
-      borderWidth: 2,
-      borderColor: '#FFFDF8',
-      hoverOffset: 6,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'right', labels: { font:{size:11} } },
-      tooltip: { callbacks: { label: c => ' ' + fmt(c.parsed) } }
-    }
-  }
-});
+// RESUMEN
+new Chart('c-res-pp',{type:'bar',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[191890,253000,120750,2561475,39050],backgroundColor:P,borderRadius:5,borderSkipped:false}]},options:bOpts()});
+new Chart('c-res-costos',{type:'doughnut',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[3198170,4600000,2100000,48790000,710000],backgroundColor:P,borderWidth:2,borderColor:'#fff',hoverOffset:8}]},options:dOpts()});
+new Chart('c-res-gan',{type:'bar',data:{labels:['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],datasets:[{data:[639634,460000,315000,2439500,71000],backgroundColor:P,borderRadius:5,borderSkipped:false}]},options:bOpts()});
 
-new Chart(document.getElementById('chartGanancia'), {
-  type: 'bar',
-  data: {
-    labels: ['E-learning Met.','Taller Cap.','Talleres Form.','Sostenibilidad','Pasantías'],
-    datasets: [{
-      data: [639634, 460000, 315000, 2439500, 71000],
-      backgroundColor: [TEAL, TEAL, TEAL, RUST, TEAL],
-      borderRadius: 4,
-    }]
-  },
-  options: barOpts()
-});
+// EDU
+const eL=['≤40','40-100','100-400','400-1K','1K-4K'];
+new Chart('c-edu-pp',{type:'line',data:{labels:eL,datasets:[{data:[21588,10236,3028,1431,424],borderColor:BLUE,backgroundColor:'rgba(27,82,153,0.1)',fill:true,tension:0.4,pointBackgroundColor:BLUE,pointRadius:5,pointHoverRadius:7}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'  '+fmt(c.parsed.y)}}},scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{callback:v=>fmt(v)}}}}});
+new Chart('c-edu-gan',{type:'bar',data:{labels:eL,datasets:[{data:[112634,133518,157973,186711,220983],backgroundColor:[BLUE,BLUE2,SKY,GOLD,NAVY],borderRadius:5,borderSkipped:false}]},options:bOpts()});
+new Chart('c-edu-cp',{type:'bar',data:{labels:eL,datasets:[{label:'Costo Base',data:[750890,890120,1053150,1244740,1473220],backgroundColor:'rgba(11,31,58,0.08)',borderColor:NAVY,borderWidth:1.5,borderRadius:3},{label:'Precio c/ Rent.',data:[863524,1023638,1211123,1431451,1694203],backgroundColor:BLUE,borderRadius:3}]},options:mOpts()});
 
-// ── E-LEARNING EDU FINANCIERA ─────────────────────────────────────────────
-const eduLabels = ['≤40','40-100','100-400','400-1K','1K-4K'];
-new Chart(document.getElementById('chartEduPP'), {
-  type: 'line',
-  data: {
-    labels: eduLabels,
-    datasets: [{
-      label: 'Precio / persona',
-      data: [21588, 10236, 3028, 1431, 424],
-      borderColor: RUST,
-      backgroundColor: RUST_A,
-      fill: true,
-      tension: 0.4,
-      pointBackgroundColor: RUST,
-      pointRadius: 5,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend:{display:false}, tooltip:{callbacks:{label:c=>' '+fmt(c.parsed.y)}} },
-    scales: {
-      y: { ticks: { callback: v => fmt(v) }, grid:{color:'rgba(0,0,0,0.05)'} },
-      x: { grid:{color:'rgba(0,0,0,0.05)'} }
-    }
-  }
-});
+// METODOLOGÍA
+new Chart('c-met-pie',{type:'doughnut',data:{labels:['Formador','Plataforma Didacsis + IVA','Materiales'],datasets:[{data:[1600000,1598170,0],backgroundColor:[BLUE,SKY,GOLD],borderWidth:2,borderColor:'#fff',hoverOffset:6}]},options:dOpts()});
+new Chart('c-met-bar',{type:'bar',data:{labels:['Costo Base','Precio Grupo','Ganancia'],datasets:[{data:[3198170,3837804,639634],backgroundColor:[NAVY,BLUE,GOLD],borderRadius:5,borderSkipped:false}]},options:bOpts()});
 
-new Chart(document.getElementById('chartEduGanancia'), {
-  type: 'bar',
-  data: {
-    labels: eduLabels,
-    datasets: [{
-      label: 'Ganancia grupo',
-      data: [112634, 133518, 157973, 186711, 220983],
-      backgroundColor: [RUST, GOLD, TEAL, INK, '#A0856B'],
-      borderRadius: 4,
-    }]
-  },
-  options: barOpts()
-});
+// CAPACITACIÓN
+new Chart('c-cap-precio',{type:'bar',data:{labels:['Asociados','Pos. Asociados','Externos'],datasets:[{data:[253000,287500,310500],backgroundColor:[BLUE,BLUE2,GOLD],borderRadius:6,borderSkipped:false}]},options:bOpts()});
+new Chart('c-cap-gan',{type:'bar',data:{labels:['Asociados','Pos. Asociados','Externos'],datasets:[{data:[460000,1150000,1610000],backgroundColor:[BLUE,BLUE2,GOLD],borderRadius:6,borderSkipped:false}]},options:bOpts()});
 
-new Chart(document.getElementById('chartEduCostoPrecio'), {
-  type: 'bar',
-  data: {
-    labels: eduLabels,
-    datasets: [
-      { label: 'Costo Total', data: [750890,890120,1053150,1244740,1473220], backgroundColor: INK_A, borderColor: INK, borderWidth: 1.5, borderRadius: 3 },
-      { label: 'Precio con Rentabilidad', data: [863524,1023638,1211123,1431451,1694203], backgroundColor: RUST, borderRadius: 3 }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.parsed.y)}} },
-    scales: {
-      y: { ticks:{callback:v=>fmt(v)}, grid:{color:'rgba(0,0,0,0.05)'} },
-      x: { grid:{display:false} }
-    }
-  }
-});
+// FORMACIÓN
+new Chart('c-form-costos',{type:'doughnut',data:{labels:['Formador','Materiales','Alquiler de espacio'],datasets:[{data:[900000,100000,1100000],backgroundColor:[BLUE,GOLD,NAVY],borderWidth:2,borderColor:'#fff',hoverOffset:6}]},options:dOpts()});
+new Chart('c-form-precios',{type:'bar',data:{labels:['Asociados','Pos. Asociados','Externos'],datasets:[{label:'Precio Grupo',data:[2415000,2625000,2835000],backgroundColor:BLUE,borderRadius:3},{label:'Ganancia',data:[315000,525000,735000],backgroundColor:GOLD,borderRadius:3}]},options:mOpts()});
 
-// ── E-LEARNING METODOLOGÍA ────────────────────────────────────────────────
-new Chart(document.getElementById('chartMetCostos'), {
-  type: 'pie',
-  data: {
-    labels: ['Formador','Plataforma Didacsis + IVA','Materiales'],
-    datasets: [{ data: [1600000,1598170,0], backgroundColor:[RUST,TEAL,GOLD], borderWidth:2, borderColor:'#FFFDF8', hoverOffset:6 }]
-  },
-  options: { responsive:true, maintainAspectRatio:false, plugins:{tooltip:{callbacks:{label:c=>' '+fmt(c.parsed)}}} }
-});
+// SOSTENIBILIDAD
+new Chart('c-sos-precio',{type:'bar',data:{labels:['Asociados','Pos. Asociados','Externos'],datasets:[{data:[51229500,56108500,65866500],backgroundColor:[BLUE,BLUE2,GOLD],borderRadius:6,borderSkipped:false}]},options:bOpts()});
+new Chart('c-sos-gan',{type:'bar',data:{labels:['Asociados','Pos. Asociados','Externos'],datasets:[{data:[2439500,7318500,17076500],backgroundColor:[BLUE,BLUE2,GOLD],borderRadius:6,borderSkipped:false}]},options:bOpts()});
+new Chart('c-sos-stack',{type:'bar',data:{labels:['Asociados','Pos. Asociados','Externos'],datasets:[{label:'Costo Base',data:[48790000,48790000,48790000],backgroundColor:NAVY,borderRadius:0},{label:'Margen',data:[2439500,7318500,17076500],backgroundColor:GOLD,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom'},tooltip:{callbacks:{label:c=>'  '+c.dataset.label+': '+fmt(c.parsed.y)}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{callback:v=>fmt(v)}}}}});
 
-new Chart(document.getElementById('chartMetRelacion'), {
-  type: 'bar',
-  data: {
-    labels: ['Costo Base','Precio Grupo','Ganancia'],
-    datasets: [{ data:[3198170,3837804,639634], backgroundColor:[INK,RUST,TEAL], borderRadius:4 }]
-  },
-  options: barOpts()
-});
-
-// ── TALLER CAPACITACIÓN ───────────────────────────────────────────────────
-new Chart(document.getElementById('chartCapPrecio'), {
-  type: 'bar',
-  data: {
-    labels: ['Asociados','Pos. Asociados','Externos'],
-    datasets: [{
-      label: 'Precio / persona',
-      data: [253000,287500,310500],
-      backgroundColor: [TEAL, GOLD, RUST],
-      borderRadius: 6,
-    }]
-  },
-  options: barOpts()
-});
-
-new Chart(document.getElementById('chartCapGanancia'), {
-  type: 'bar',
-  data: {
-    labels: ['Asociados','Pos. Asociados','Externos'],
-    datasets: [{
-      label: 'Ganancia grupo',
-      data: [460000,1150000,1610000],
-      backgroundColor: [TEAL, GOLD, RUST],
-      borderRadius: 6,
-    }]
-  },
-  options: barOpts()
-});
-
-// ── TALLERES FORMACIÓN ────────────────────────────────────────────────────
-new Chart(document.getElementById('chartFormCostos'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Formador','Materiales','Alquiler de espacio'],
-    datasets: [{ data:[900000,100000,1100000], backgroundColor:[RUST,GOLD,TEAL], borderWidth:2, borderColor:'#FFFDF8', hoverOffset:6 }]
-  },
-  options: { responsive:true, maintainAspectRatio:false, plugins:{tooltip:{callbacks:{label:c=>' '+fmt(c.parsed)}}} }
-});
-
-new Chart(document.getElementById('chartFormPrecios'), {
-  type: 'bar',
-  data: {
-    labels: ['Asociados','Pos. Asociados','Externos'],
-    datasets: [
-      { label: 'Precio Grupo', data:[2415000,2625000,2835000], backgroundColor:RUST, borderRadius:3 },
-      { label: 'Ganancia', data:[315000,525000,735000], backgroundColor:TEAL, borderRadius:3 }
-    ]
-  },
-  options: {
-    responsive:true, maintainAspectRatio:false,
-    plugins: { tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.parsed.y)}} },
-    scales: { y:{ticks:{callback:v=>fmt(v)},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} }
-  }
-});
-
-// ── SOSTENIBILIDAD ────────────────────────────────────────────────────────
-new Chart(document.getElementById('chartSosPrecio'), {
-  type: 'bar',
-  data: {
-    labels: ['Asociados','Pos. Asociados','Externos'],
-    datasets: [{ data:[51229500,56108500,65866500], backgroundColor:[TEAL,GOLD,RUST], borderRadius:6 }]
-  },
-  options: barOpts()
-});
-
-new Chart(document.getElementById('chartSosGanancia'), {
-  type: 'bar',
-  data: {
-    labels: ['Asociados','Pos. Asociados','Externos'],
-    datasets: [{ data:[2439500,7318500,17076500], backgroundColor:[TEAL,GOLD,RUST], borderRadius:6 }]
-  },
-  options: barOpts()
-});
-
-new Chart(document.getElementById('chartSosStack'), {
-  type: 'bar',
-  data: {
-    labels: ['Asociados','Pos. Asociados','Externos'],
-    datasets: [
-      { label: 'Costo Base', data:[48790000,48790000,48790000], backgroundColor: INK, borderRadius: 0 },
-      { label: 'Margen de Rentabilidad', data:[2439500,7318500,17076500], backgroundColor: RUST, borderRadius: 3 }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + fmt(c.parsed.y) } } },
-    scales: {
-      x: { stacked: true, grid:{display:false} },
-      y: { stacked: true, ticks:{callback:v=>fmt(v)}, grid:{color:'rgba(0,0,0,0.05)'} }
-    }
-  }
-});
-
-// ── PASANTÍAS ─────────────────────────────────────────────────────────────
-new Chart(document.getElementById('chartPasCostos'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Transporte','Almuerzo y snacks','Certificados'],
-    datasets: [{ data:[600000,60000,50000], backgroundColor:[RUST,GOLD,TEAL], borderWidth:2, borderColor:'#FFFDF8', hoverOffset:6 }]
-  },
-  options: { responsive:true, maintainAspectRatio:false, plugins:{tooltip:{callbacks:{label:c=>' '+fmt(c.parsed)}}} }
-});
-
-new Chart(document.getElementById('chartPasRelacion'), {
-  type: 'bar',
-  data: {
-    labels: ['Costo Base','Precio Grupo','Ganancia'],
-    datasets: [{ data:[710000,781000,71000], backgroundColor:[INK,RUST,TEAL], borderRadius:4 }]
-  },
-  options: barOpts()
-});
+// PASANTÍAS
+new Chart('c-pas-pie',{type:'doughnut',data:{labels:['Transporte','Almuerzo y snacks','Certificados'],datasets:[{data:[600000,60000,50000],backgroundColor:[BLUE,GOLD,NAVY],borderWidth:2,borderColor:'#fff',hoverOffset:6}]},options:dOpts()});
+new Chart('c-pas-bar',{type:'bar',data:{labels:['Costo Base','Precio Grupo','Ganancia'],datasets:[{data:[710000,781000,71000],backgroundColor:[NAVY,BLUE,GOLD],borderRadius:5,borderSkipped:false}]},options:bOpts()});
 </script>
 </body>
 </html>
